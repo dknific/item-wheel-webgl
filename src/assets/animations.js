@@ -1,6 +1,5 @@
 import TWEEN from '@tweenjs/tween.js';
-import { MESHES } from './meshes';
-
+import { MESHES, materialBlack, materialWhite } from './meshes';
 const {
   group,
   meshCircle01,
@@ -65,8 +64,38 @@ function createTweensForBottomConeRotation(
   }
 }
 
-export function startAnimation(clickedMesh) {
+function handleTextColorChange(nameOfCircleGroup) {
+  switch(nameOfCircleGroup) {
+    case 'meshCircle01':
+      MESHES.meshCircle01.children[1].material = materialBlack;
+      MESHES.meshCircle02.children[1].material = materialWhite;
+      MESHES.meshCircle03.children[1].material = materialWhite;
+      MESHES.meshCircle04.children[1].material = materialWhite;
+      break;
+    case 'meshCircle02':
+      MESHES.meshCircle01.children[1].material = materialWhite;
+      MESHES.meshCircle02.children[1].material = materialBlack;
+      MESHES.meshCircle03.children[1].material = materialWhite;
+      MESHES.meshCircle04.children[1].material = materialWhite;
+      break;
+    case 'meshCircle03':
+      MESHES.meshCircle01.children[1].material = materialWhite;
+      MESHES.meshCircle02.children[1].material = materialWhite;
+      MESHES.meshCircle03.children[1].material = materialBlack;
+      MESHES.meshCircle04.children[1].material = materialWhite;
+      break;
+    case 'meshCircle04':
+      MESHES.meshCircle01.children[1].material = materialWhite;
+      MESHES.meshCircle02.children[1].material = materialWhite;
+      MESHES.meshCircle03.children[1].material = materialWhite;
+      MESHES.meshCircle04.children[1].material = materialBlack;
+      break;
+  }
+}
+
+export function animateItemWheelRotation(clickedMesh) {
   const directionClicked = (clickedMesh.point.x < 0) ? 'LEFT' : 'RIGHT';
+  handleTextColorChange(clickedMesh.object.class)
 
   animateEntireGroupRotation(group.rotation.y, directionClicked);
   createYaxisRotationTween(meshCircle01, directionClicked).start();

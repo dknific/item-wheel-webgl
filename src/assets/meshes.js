@@ -14,8 +14,8 @@ const materialRed = new MeshPhongMaterial({ color: '#ff6363' });
 const materialOrange = new MeshPhongMaterial({ color: '#ff8400' });
 const materialGreen = new MeshPhongMaterial({ color: '#8cff8a' });
 const materialPink = new MeshPhongMaterial({ color: '#78c4de' });
-const materialBlack = new MeshBasicMaterial({ color: 'black' });
-const materialWhite = new MeshPhongMaterial({
+export const materialBlack = new MeshBasicMaterial({ color: 'black' });
+export const materialWhite = new MeshPhongMaterial({
   color: "#ededed",
   transparent: true,
   opacity: 0.75,
@@ -29,6 +29,10 @@ const meshCircle01 = new Mesh(geometryCircle, materialBlue);
 const meshCircle02 = new Mesh(geometryCircle, materialRed);
 const meshCircle03 = new Mesh(geometryCircle, materialOrange);
 const meshCircle04 = new Mesh(geometryCircle, materialGreen);
+meshCircle01.class = 'meshCircle01';
+meshCircle02.class = 'meshCircle02';
+meshCircle03.class = 'meshCircle03';
+meshCircle04.class = 'meshCircle04';
 meshCircle01.position.set(0, 0, 1.5);
 meshCircle02.position.set(1.5, 0, 0);
 meshCircle03.position.set(0, 0, -1.5);
@@ -44,6 +48,10 @@ const meshWhiteCircleOverlay01 = new Mesh(geometryCircleSmall, materialWhite);
 const meshWhiteCircleOverlay02 = new Mesh(geometryCircleSmall, materialWhite);
 const meshWhiteCircleOverlay03 = new Mesh(geometryCircleSmall, materialWhite);
 const meshWhiteCircleOverlay04 = new Mesh(geometryCircleSmall, materialWhite);
+meshWhiteCircleOverlay01.class = 'meshCircle01';
+meshWhiteCircleOverlay02.class = 'meshCircle02';
+meshWhiteCircleOverlay03.class = 'meshCircle03';
+meshWhiteCircleOverlay04.class = 'meshCircle04';
 meshWhiteCircleOverlay01.position.z = 0.001;
 meshWhiteCircleOverlay02.position.z = 0.001;
 meshWhiteCircleOverlay03.position.z = 0.001;
@@ -66,13 +74,18 @@ fontLoader.load('src/assets/Futura_Bold.json',
     const textGeometryFour = loadTextGeometry('SETTINGS', arialFont);
 
     const textOne = new Mesh(textGeometryOne, materialBlack);
-    const textTwo = new Mesh(textGeometryTwo, materialBlack);
-    const textThree = new Mesh(textGeometryThree, materialBlack);
-    const textFour = new Mesh(textGeometryFour, materialBlack);
+    const textTwo = new Mesh(textGeometryTwo, materialWhite);
+    const textThree = new Mesh(textGeometryThree, materialWhite);
+    const textFour = new Mesh(textGeometryFour, materialWhite);
     textOne.position.set(-0.57, -0.15, 0.1);
     textTwo.position.set(-0.5, -0.15, 0.1);
     textThree.position.set(-0.7, -0.15, 0.1);
     textFour.position.set(-0.85, -0.15, 0.1);
+
+    textOne.class = 'meshCircle01';
+    textTwo.class = 'meshCircle02';
+    textThree.class = 'meshCircle03';
+    textFour.class = 'meshCircle04';
 
     // - Make each circle a parent of its text mesh:
     meshCircle01.add(textOne);

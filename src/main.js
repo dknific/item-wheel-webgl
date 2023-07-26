@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
-import { startAnimation } from './assets/animations';
+import { animateItemWheelRotation } from './assets/animations';
 import { MESHES } from './assets/meshes';
 
 const scene = new THREE.Scene();
@@ -27,7 +27,7 @@ function handleClick(event) {
 
   const intersects = raycaster.intersectObjects(scene.children);
   if (intersects[0]) {
-    startAnimation(intersects[0]);
+    animateItemWheelRotation(intersects[0]);
   }
 }
 
