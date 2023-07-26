@@ -9,6 +9,7 @@ import {
   MeshPhongMaterial,
 } from 'three';
 
+// Materials:
 const materialBlue = new MeshPhongMaterial({ color: '#94a6ff' });
 const materialRed = new MeshPhongMaterial({ color: '#ff6363' });
 const materialOrange = new MeshPhongMaterial({ color: '#ff8400' });
@@ -21,10 +22,12 @@ export const materialWhite = new MeshPhongMaterial({
   opacity: 0.75,
 });
 
+// Geometries:
 const geometryCircle = new CircleGeometry(0.75, 56);
 const geometryCircleSmall = new CircleGeometry(0.6, 56);
 const geometryCone = new ConeGeometry(0.7, 1.5, 4);
 
+// Meshes:
 const meshCircle01 = new Mesh(geometryCircle, materialBlue);
 const meshCircle02 = new Mesh(geometryCircle, materialRed);
 const meshCircle03 = new Mesh(geometryCircle, materialOrange);
@@ -57,6 +60,7 @@ meshWhiteCircleOverlay02.position.z = 0.001;
 meshWhiteCircleOverlay03.position.z = 0.001;
 meshWhiteCircleOverlay04.position.z = 0.001;
 
+// Load texts and fonts:
 function loadTextGeometry(textString, fontName) {
   return new TextGeometry(textString, {
     size: 0.3,
@@ -87,7 +91,7 @@ fontLoader.load('src/assets/Futura_Bold.json',
     textThree.class = 'meshCircle03';
     textFour.class = 'meshCircle04';
 
-    // - Make each circle a parent of its text mesh:
+    // Make each circle a parent of its text mesh:
     meshCircle01.add(textOne);
     meshCircle02.add(textTwo);
     meshCircle03.add(textThree);
@@ -95,13 +99,13 @@ fontLoader.load('src/assets/Futura_Bold.json',
   }
 );
 
-// - Make each circle a parent of its white inner circle:
+// Make each circle a parent of its white inner circle:
 meshCircle01.add(meshWhiteCircleOverlay01);
 meshCircle02.add(meshWhiteCircleOverlay02);
 meshCircle03.add(meshWhiteCircleOverlay03);
 meshCircle04.add(meshWhiteCircleOverlay04);
 
-// - Group the parents so we can rotate them as one whole:
+// Group the parents so we can rotate them as one whole:
 const group = new Group();
 group.add(meshCircle01, meshCircle02, meshCircle03, meshCircle04);
 

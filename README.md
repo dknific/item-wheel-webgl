@@ -1,4 +1,9 @@
 # item-wheel-webgl
+An interactive "item select" wheel using WebGL via Three.js
+
+![A gif showing an example use of the wheel](https://i.imgur.com/NVdLjav.gif)
+
+## Dependencies
 You can run this WebGL project by using the following requirements and dependencies:
 
 - <a href="https://caniuse.com/?search=webgl" target="_blank">A WebGL-capable browser</a> (*most modern ones can, even mobile*)
