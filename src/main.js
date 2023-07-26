@@ -15,7 +15,7 @@ const camera = new THREE.PerspectiveCamera(
   1000,
 );
 
-scene.background = new THREE.Color("#242424");
+scene.background = new THREE.Color("white");
 pointLight.position.set(-0.5, 0.2, 2.5);
 renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.z = 5;

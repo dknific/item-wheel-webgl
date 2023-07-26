@@ -12,13 +12,13 @@ const {
 const ANIMATION_SPEED = 600;
 const EASING_MODE = TWEEN.Easing.Cubic.Out;
 
-function handleTotemRotation(currentRotationVal, directionString) {
-  if (directionString.toUpperCase() === 'LEFT') {
+function animateEntireGroupRotation(currentRotationVal, directionClicked) {
+  if (directionClicked.toUpperCase() === 'LEFT') {
     new TWEEN.Tween(group.rotation)
       .to({ y: currentRotationVal + 1.57 }, ANIMATION_SPEED)
       .easing(EASING_MODE)
       .start();
-  } else if (directionString.toUpperCase() === 'RIGHT') {
+  } else if (directionClicked.toUpperCase() === 'RIGHT') {
     new TWEEN.Tween(group.rotation)
       .to({ y: currentRotationVal - 1.57 }, ANIMATION_SPEED)
       .easing(EASING_MODE)
@@ -26,11 +26,11 @@ function handleTotemRotation(currentRotationVal, directionString) {
   }
 }
 
-function createFlipTween(mesh, directionString) {
+function createYaxisRotationTween(mesh, directionClicked) {
   let newRotationValue = mesh.rotation.y;
-  if (directionString === 'LEFT') {
+  if (directionClicked === 'LEFT') {
     newRotationValue -= 1.57;
-  } else if (directionString === 'RIGHT') {
+  } else if (directionClicked === 'RIGHT') {
     newRotationValue += 1.57;
   }
   return new TWEEN.Tween(mesh.rotation)
@@ -38,24 +38,27 @@ function createFlipTween(mesh, directionString) {
     .easing(EASING_MODE);
 }
 
-function createTopConeTweens(currentRotationVal, directionString) {
-  if (directionString === 'RIGHT') {
+function createTweensForTopConeRotation(currentRotationVal, directionClicked) {
+  if (directionClicked === 'RIGHT') {
     return new TWEEN.Tween(MESHES.topCone.rotation)
       .to({ y: currentRotationVal + 1 }, ANIMATION_SPEED)
       .easing(EASING_MODE);
-  } else if (directionString === 'LEFT') {
+  } else if (directionClicked === 'LEFT') {
     return new TWEEN.Tween(MESHES.topCone.rotation)
       .to({ y: currentRotationVal - 1 }, ANIMATION_SPEED)
       .easing(EASING_MODE);
   }
 }
 
-function createBottomConeTweens(currentRotationVal, directionString) {
-  if (directionString === 'RIGHT') {
+function createTweensForBottomConeRotation(
+  currentRotationVal,
+  directionClicked,
+) {
+  if (directionClicked === 'RIGHT') {
     return new TWEEN.Tween(MESHES.bottomCone.rotation)
       .to({ y: currentRotationVal - 1 }, ANIMATION_SPEED)
       .easing(EASING_MODE);
-  } else if (directionString === "LEFT") {
+  } else if (directionClicked === "LEFT") {
     return new TWEEN.Tween(MESHES.bottomCone.rotation)
       .to({ y: currentRotationVal + 1 }, ANIMATION_SPEED)
       .easing(EASING_MODE);
@@ -63,21 +66,20 @@ function createBottomConeTweens(currentRotationVal, directionString) {
 }
 
 export function startAnimation(clickedMesh) {
-  if (clickedMesh.point.x < 0) {
-    handleTotemRotation(group.rotation.y, 'LEFT');
-    createFlipTween(meshCircle01, 'LEFT').start();
-    createFlipTween(meshCircle02, 'LEFT').start();
-    createFlipTween(meshCircle03, 'LEFT').start();
-    createFlipTween(meshCircle04, 'LEFT').start();
-    createTopConeTweens(MESHES.topCone.rotation.y, 'LEFT').start();
-    createBottomConeTweens(MESHES.bottomCone.rotation.y, 'LEFT').start();
-  } else {
-    handleTotemRotation(group.rotation.y, 'RIGHT');
-    createFlipTween(meshCircle01, 'RIGHT').start();
-    createFlipTween(meshCircle02, 'RIGHT').start();
-    createFlipTween(meshCircle03, 'RIGHT').start();
-    createFlipTween(meshCircle04, 'RIGHT').start();
-    createTopConeTweens(MESHES.topCone.rotation.y, 'RIGHT').start();
-    createBottomConeTweens(MESHES.bottomCone.rotation.y, 'RIGHT').start();
-  }
+  const directionClicked = (clickedMesh.point.x < 0) ? 'LEFT' : 'RIGHT';
+
+  animateEntireGroupRotation(group.rotation.y, directionClicked);
+  createYaxisRotationTween(meshCircle01, directionClicked).start();
+  createYaxisRotationTween(meshCircle02, directionClicked).start();
+  createYaxisRotationTween(meshCircle03, directionClicked).start();
+  createYaxisRotationTween(meshCircle04, directionClicked).start();
+
+  createTweensForTopConeRotation(
+    MESHES.topCone.rotation.y,
+    directionClicked,
+  ).start();
+  createTweensForBottomConeRotation(
+    MESHES.bottomCone.rotation.y,
+    directionClicked,
+  ).start();
 }
