@@ -1,5 +1,7 @@
 # item-wheel-webgl
-An interactive "item select" wheel using WebGL via Three.js
+An interactive "item select" wheel using WebGL via Three.js.
+
+Try the [Live Demo Here!](https://main.d2o1n3xvcm2vb1.amplifyapp.com/)
 
 ![A gif showing an example use of the wheel](https://i.imgur.com/NVdLjav.gif)
 
