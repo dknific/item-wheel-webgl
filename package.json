@@ -1,4 +1,9 @@
 {
+  "name": "item-wheel-webgl",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "@tweenjs/tween.js": "^21.0.0",
     "three": "^0.154.0"
