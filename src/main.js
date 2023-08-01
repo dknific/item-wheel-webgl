@@ -15,19 +15,21 @@ const camera = new THREE.PerspectiveCamera(
   1000,
 );
 
-scene.background = new THREE.Color("white");
+scene.background = new THREE.Color('white');
 pointLight.position.set(-0.5, 0.2, 2.5);
 renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.z = 5;
 
+let activeMeshClass = 'meshCircle01';
 function handleClick(event) {
   mouseVector.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
   mouseVector.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
   raycaster.setFromCamera(mouseVector, camera);
 
   const intersects = raycaster.intersectObjects(scene.children);
-  if (intersects[0]) {
+  if (intersects[0]?.object.class && intersects[0].object.class !== activeMeshClass) {
     animateItemWheelRotation(intersects[0]);
+    activeMeshClass = intersects[0].object.class;
   }
 }
 
