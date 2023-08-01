@@ -70,7 +70,7 @@ function loadTextGeometry(textString, fontName) {
 }
 
 const fontLoader = new FontLoader();
-fontLoader.load('src/assets/Futura_Bold.json',
+fontLoader.load('Futura_Bold.json',
   arialFont => {
     const textGeometryOne = loadTextGeometry('START', arialFont);
     const textGeometryTwo = loadTextGeometry('LOAD', arialFont);

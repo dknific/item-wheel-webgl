@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
-import { animateItemWheelRotation } from './assets/animations';
-import { MESHES } from './assets/meshes';
+import { animateItemWheelRotation } from '/src/lib/animations';
+import { MESHES } from '/src/lib/meshes';
 
 const scene = new THREE.Scene();
 const raycaster = new THREE.Raycaster();

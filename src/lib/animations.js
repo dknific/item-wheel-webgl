@@ -1,5 +1,5 @@
 import TWEEN from '@tweenjs/tween.js';
-import { MESHES, materialBlack, materialWhite } from './meshes';
+import { MESHES, materialBlack, materialWhite } from '/src/lib/meshes';
 const {
   group,
   meshCircle01,

@@ -4,7 +4,7 @@ An interactive "item select" wheel using WebGL via Three.js
 ![A gif showing an example use of the wheel](https://i.imgur.com/NVdLjav.gif)
 
 ## Dependencies
-You can run this WebGL project by using the following requirements and dependencies:
+You can run this WebGL project locally with the following requirements and dependencies:
 
 - <a href="https://caniuse.com/?search=webgl" target="_blank">A WebGL-capable browser</a> (*most modern ones can, even mobile*)
 - <a href="https://threejs.org/" target="_blank">Three.js</a>
@@ -17,4 +17,4 @@ You can run this WebGL project by using the following requirements and dependenc
 
 ## To Run Locally:
 
-    npx vite
+    npm run dev
